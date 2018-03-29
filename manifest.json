@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+
+  "name": "Hours summary for Harmony",
+  "description": "",
+  "version": "1.0.5",
+  "permissions": [
+    "tabs", "<all_urls>"
+  ],
+  "content_scripts": [ {
+    "js": ["background.js" ],
+    "matches": [ "http://harmony/*","https://harmony/*"]
+  }]
+  
+}
