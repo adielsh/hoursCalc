@@ -1,24 +1,7 @@
  var counter = 0;
- var SHORT_URL = "goo.gl/2jPrqh";
- var extObjData = {YEAR_EXPIRE: "119", MSG: "Extension version expired, Please check for a new version at this URL:	"}
+ const YEAR_EXPIRE = 119;
+ const SHORT_URL = "goo.gl/2jPrqh";
 
- function parseFromFirebase(msg){
-	var jsonData = JSON.parse(msg);
-	extObjData.YEAR_EXPIRE = jsonData.expired;
-	extObjData.MSG = jsonData.msg;
- }
- 
- function httpGetAsync(theUrl, callback)
-{
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() { 
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
-    }
-    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
-    xmlHttp.send(null);
-}
- 
 function calc() {
     var plusArr = [],plusCalc = 0, minusArr = [], minusCalc = 0, minSum = 0, hourSum = 0;
 	document.querySelectorAll("table .rowGrid-att-green").forEach(function ( value) {
@@ -51,7 +34,7 @@ function draw (){
 	var textSpan = document.createElement("SPAN");   
  
 
-	if(new Date().getYear() < extObjData.YEAR_EXPIRE)
+	if(new Date().getYear() < YEAR_EXPIRE)
 	{
 		var calcResult = calc();  
     
@@ -70,7 +53,7 @@ function draw (){
 	}
 	else
 	{
-		var textData = document.createTextNode(extObjData.MSG);
+		var textData = document.createTextNode("Extension version expired, Please check for a new version at this URL:	"		+ SHORT_URL);
 		textSpan.style.color  = "blue";
 		textSpan.style.fontSize = "20px"; 
 		textSpan.appendChild(textData);                 
@@ -109,8 +92,7 @@ function loop(){
 		checkStatus();
 	}
 	
-	httpGetAsync("https://us-central1-harmonycalchours.cloudfunctions.net/getUserMessage",parseFromFirebase);
 	main();
-	
+
 
 
