@@ -1,9 +1,10 @@
 {
   "manifest_version": 2,
 
-  "name": "Hours summary for Harmony",
+  "name": "Hours summary for Harmony",	
+  "short_name": "Hours summary for Harmony",	
   "description": "",
-  "version": "1.0.5",
+  "version": "1.0.9",
   "permissions": [
     "tabs", "<all_urls>"
   ],
